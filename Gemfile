@@ -47,3 +47,6 @@ gem 'geocoder'
 
 # Using devise for user auth
 gem 'devise'
+
+# Use thin as the dev web server
+gem 'thin'
