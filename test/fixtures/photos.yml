@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  photo: MyString
+  lat: 9.99
+  lon: 9.99
+  caption: MyString
+  device_id: 1
+  assignment_id: 1
+
+two:
+  photo: MyString
+  lat: 9.99
+  lon: 9.99
+  caption: MyString
+  device_id: 1
+  assignment_id: 1
