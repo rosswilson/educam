@@ -36,3 +36,12 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# Using carrierwave to handle file uploads
+gem 'carrierwave'
+
+# Using mini_magik, for photo resizing, rather than rmagik as it uses less memory
+gem 'mini_magick'
+
+# Using geocoder gem to search for Photos by location
+gem 'geocoder'

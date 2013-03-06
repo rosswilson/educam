@@ -1,33 +1,12 @@
-<h1>Listing photos</h1>
-
-<table>
-  <tr>
-    <th>Photo</th>
-    <th>Lat</th>
-    <th>Lon</th>
-    <th>Caption</th>
-    <th>Device</th>
-    <th>Assignment</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%= photo.photo %></td>
-    <td><%= photo.lat %></td>
-    <td><%= photo.lon %></td>
-    <td><%= photo.caption %></td>
-    <td><%= photo.device_id %></td>
-    <td><%= photo.assignment_id %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% if @search_term.present? %>
+  <% searching_title = "Searching For Photos Related To " + @search_term.titlecase %>
+  <% title searching_title %>
+  <h3><%= searching_title %></h3>
+<% else %>
+  <h3>You're viewing all Photos that have been uploaded.</h3>
+  <% title "Viewing All Photos" %>
 <% end %>
-</table>
 
-<br />
+<%= render partial: "photo_grid", locals: { photos: @photos } %>
 
-<%= link_to 'New Photo', new_photo_path %>
+<%= link_to 'Upload Photo', new_photo_path, class: "btn" %>

@@ -12,29 +12,30 @@
   <% end %>
 
   <div class="field">
+    <%= image_tag(@photo.photo.thumb.url) if @photo.photo.present? %>
+  </div>
+
+  <div class="field">
     <%= f.label :photo %><br />
-    <%= f.text_field :photo %>
+    <%= f.file_field :photo %>
+    <%= f.hidden_field :photo_cache %>
   </div>
-  <div class="field">
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
-  </div>
-  <div class="field">
-    <%= f.label :lon %><br />
-    <%= f.text_field :lon %>
-  </div>
+
   <div class="field">
     <%= f.label :caption %><br />
     <%= f.text_field :caption %>
   </div>
+
   <div class="field">
-    <%= f.label :device_id %><br />
-    <%= f.number_field :device_id %>
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %>
   </div>
+
   <div class="field">
-    <%= f.label :assignment_id %><br />
-    <%= f.number_field :assignment_id %>
+    <%= f.label :lon %><br />
+    <%= f.text_field :lon %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

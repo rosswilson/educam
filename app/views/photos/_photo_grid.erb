@@ -1,0 +1,14 @@
+<div id="photo_grid_wrapper">
+  <% photos.each do |photo| %>
+    <% if photo.photo.thumb.present? %>
+      <div class="photo">
+        <div>
+          <%# image_tag = image_tag photo.photo.thumb.url, title: photo.tag_list %>
+          <% image_tag = image_tag photo.photo.thumb.url %>
+          <%= link_to image_tag, photo_path(photo) %>          
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>

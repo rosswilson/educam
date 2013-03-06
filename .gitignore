@@ -16,3 +16,6 @@
 
 # Ignore all Mac Finder hidden files
 .DS_Store
+
+# Ignore all uploaded content
+/public/uploads
