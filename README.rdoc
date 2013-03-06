@@ -1,0 +1,38 @@
+== Welcome to EduCam
+
+EduCam is a web app based on the Ruby on Rails framework. It forms part of my
+Final Year Project for my Computer Science MSci course at Lancaster University.
+
+This app works in conjunction with an Android mobile app that I have developed 
+of the same name. I'll be publishing the code for that part of the project soon.
+
+== What Is The Project About?
+
+The title of my project is "Identifying the Potential of Mobile Phone Cameras
+in Teaching and Learning".
+
+Over a twenty week period I have developed a technical solution to this project
+title. Schools have historically perceived the use of mobile phones to be disruptive
+to student's education within class. This project however looks at whether mobile phones
+can actually be harnessed by teachers to develop a radically different way of teaching.
+
+My solution is based on the idea of fostering students’ active participation while helping
+them to understand lessons in a more interesting and effective way. Students will be
+given smart phones loaded with the app that I have developed. This app presents a list
+of learning topics that the teacher has supplied. For example consider an engineering lesson.
+The students are broken into small groups and are sent out of the classroom to act as News Reporters.
+They are asked to use the mobile phone to capture photo examples of objects relevant to their current
+area of study. This encourages students to take theoretical concepts and apply them to the real
+world.
+
+Back at the classroom the teacher has access to this web app where the student's photos are uploaded
+to in real time. The GPS location of each photos is recorded along with keywords that the student's
+have attached to each photo. When the students return the teacher can view the photos and incorporate them
+into her structured lesson.
+
+== Running This Web App
+
+1. Change directory to <tt>EduCam</tt> and start the web server:
+    <tt>cd EduCam; rails server</tt> (run with --help for options)
+
+2. Go to http://localhost:3000/ using your browser.

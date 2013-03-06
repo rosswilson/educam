@@ -1,0 +1,55 @@
+// Place all the styles related to the Photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#photo_grid_wrapper {
+	margin-top: 15px;
+	margin-right: -10px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+#photo_grid_wrapper .photo img {
+	/*margin-bottom: 20px;*/
+	/*margin-right: 20px;*/
+	width: 100%;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#photo_grid_wrapper .photo img:hover {
+	opacity: 0.7;
+}
+
+#photo_grid_wrapper .photo {
+	width: 20%;
+	float: left;
+}
+
+#photo_grid_wrapper .photo div {
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+#single_photo_wrapper {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	overflow: hidden;
+	width: 100%;
+}
+
+#single_photo_wrapper #photo {
+	width: 100%;
+}
+
+#single_photo_wrapper img {
+	width: 100%;
+}
+
+#photo_search {
+	display: inline;
+	position: absolute;
+	top: 10px;
+	right: 21px;
+}
