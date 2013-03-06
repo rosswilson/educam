@@ -28,8 +28,8 @@
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn" %>
       <p>Logged in as <strong><%= current_user.email %></strong></p>
     <% else %>
-      <%= link_to "Register", new_user_registration_path, class: "btn" %>
       <%= link_to "Login", new_user_session_path, class: "btn" %>
+      <%= link_to "Register", new_user_registration_path, class: "btn" %>
       <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
     <% end %>
   </div>
