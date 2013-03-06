@@ -1,4 +1,7 @@
 EduCam::Application.routes.draw do
+  resources :devices
+
+
   resources :photos
 
 
