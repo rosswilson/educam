@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>EduCam</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <% title = yield(:title) || 'EduCam, by Ross Wilson' %>
+  <title><%= title %></title>
+  <meta name="description" content="">
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js", "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+<header>
+  <h2><a href="/photos" title="Read more about this project and see how it works">EduCam</a> by Ross Wilson</h2>
+  <h1 class="title"><%= title %></h1>
+  <!--<%= form_tag photos_path, method: :get, id: "photo_search" do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>-->
+  <nav>
+    <ul>
+	    <li><a class="btn" href="#">View Projects</a></li>
+      <li><a class="btn" href="#">Manage Devices</a></li>     
+    </ul>
+  </nav>
+</header>
+
+<div class="wrapright">     
+  <div class="right">
+    <aside>
+      <h3><strong>Tags</strong> <span>(<%#= Tag.count %>)</span></h3>
+      <ul>
+        <li><%#= raw Tag.all.map { |t| link_to(t.name, tag_path(t)) }.join(', ') %></li>
+      </ul>
+    </aside>
+<!--     <aside>
+      <h3><strong>Projects</strong> <span>(5)</span></h3>
+    </aside>
+    <aside>
+      <h3><strong>Devices</strong> <span>(1)</span></h3>
+    </aside> -->
+    <%= yield(:sidebar) %>
+  </div>
+</div>
+
+<div class="left">
+    <%= yield %>
+</div>
 
 </body>
+
 </html>
