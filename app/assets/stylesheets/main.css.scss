@@ -53,23 +53,27 @@ header h2 a:hover {
 	text-decoration: underline;
 }
 
-/* Removing padding and margin spacing from the nav container */
-header nav, header nav ul {
+/* Removing padding and margin spacing from the login_register container */
+header #login_register {
 	margin: 0;
 	padding: 0;
 }
 
-/* Styles the top nav to be a horizontal row of buttons */
-header nav {
-	display: inline;	
+/* Styles the login_register container to be a horizontal row of buttons */
+header #login_register {
 	position: absolute;
 	top: 50px;
 	right: 18px;
-	font-size: 11pt;
+	text-align: right;
 }
 
-/* Styles the top nav to be a horizontal row of buttons */
-header nav ul li {
+header p {
+	top: -76px;
+	position: relative;
+}
+
+/* Styles the login_register container to be a horizontal row of buttons */
+header #login_register a {
 	display: inline;
 	list-style: none;
 	margin-left: 15px;

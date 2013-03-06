@@ -22,12 +22,23 @@
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
   <% end %>-->
-  <nav>
+  <div id="login_register">
+    <% if user_signed_in? %>
+      <%= link_to 'My Account', edit_user_registration_path, class: "btn" %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn" %>
+      <p>Logged in as <strong><%= current_user.email %></strong></p>
+    <% else %>
+      <%= link_to "Register", new_user_registration_path, class: "btn" %>
+      <%= link_to "Login", new_user_session_path, class: "btn" %>
+      <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
+    <% end %>
+  </div>
+  <!--<nav>
     <ul>
 	    <li><a class="btn" href="#">View Projects</a></li>
       <li><a class="btn" href="#">Manage Devices</a></li>     
     </ul>
-  </nav>
+  </nav>-->
 </header>
 
 <div class="wrapright">     
@@ -49,7 +60,9 @@
 </div>
 
 <div class="left">
-    <%= yield %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
 </div>
 
 </body>
