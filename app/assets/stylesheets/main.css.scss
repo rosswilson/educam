@@ -8,9 +8,9 @@ body {
 
 header {
 	padding: 18px 20px;
-	height: 62px;
 	background-color: #20202a;
 	color: #aaa;
+	height: 72px;
 	font-weight: 200;
 }
 
@@ -53,34 +53,29 @@ header h2 a:hover {
 	text-decoration: underline;
 }
 
-/* Removing padding and margin spacing from the login_register container */
+/* Styles the login_register container to be a horizontal row of buttons */
 header #login_register {
 	margin: 0;
 	padding: 0;
-}
-
-/* Styles the login_register container to be a horizontal row of buttons */
-header #login_register {
 	position: absolute;
-	top: 50px;
-	right: 18px;
+	top: 15px;
+	right: 15px;
 	text-align: right;
 }
 
-header p {
-	top: -76px;
-	position: relative;
+header #login_register p {
+	margin-top: 0;
+	margin-bottom: 15px;
 }
 
 /* Styles the login_register container to be a horizontal row of buttons */
 header #login_register a {
-	display: inline;
-	list-style: none;
 	margin-left: 15px;
 }
 
 /* Styles the top navigation buttons with a red gradient, rounded corners, and white font colour */
 .btn  {
+	display: inline-block;
 	color: white;
 	text-decoration: none;
 	padding: 8px;
@@ -171,4 +166,48 @@ aside ul li a:hover {
 
 .clearfix {
 	clear: both;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+
+	header {
+		/*height: 150px;*/
+		height: auto;
+	}
+
+	header #login_register {
+		top: 0;
+		position: static;
+		right: 0;
+		text-align: left;
+		margin-top: 10px;
+	}
+
+	header #login_register p {
+		top: 0px;
+		position: static;
+	}
+
+	/* Styles the login_register container to be a horizontal row of buttons */
+	header #login_register a {
+		margin-left: 0px;
+		padding-left: 25px;
+		padding-right: 25px;
+		text-align: center;
+	}
+
+	/* Styles the login_register container to be a horizontal row of buttons */
+	header #login_register a:nth-of-type(1) {
+		margin-right: 12px;
+	}
+
+	.left {
+		margin-right: 15px;
+		margin-left: 15px;
+	}
+
+	.right {
+		display: none;
+	}
+
 }

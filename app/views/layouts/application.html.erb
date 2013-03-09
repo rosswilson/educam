@@ -7,6 +7,7 @@
   <% title = yield(:title) || 'EduCam, by Ross Wilson' %>
   <title><%= title %></title>
   <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js", "application" %>
@@ -24,13 +25,13 @@
   <% end %>-->
   <div id="login_register">
     <% if user_signed_in? %>
+      <p>Logged in as <strong><%= current_user.email %></strong></p>
       <%= link_to 'My Account', edit_user_registration_path, class: "btn" %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn" %>
-      <p>Logged in as <strong><%= current_user.email %></strong></p>
     <% else %>
+      <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
       <%= link_to "Login", new_user_session_path, class: "btn" %>
       <%= link_to "Register", new_user_registration_path, class: "btn" %>
-      <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
     <% end %>
   </div>
   <!--<nav>
