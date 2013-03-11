@@ -5,6 +5,7 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.all
+    @assignments = Assignment.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -42,25 +42,7 @@
   </nav>-->
 </header>
 
-<div class="wrapright">     
-  <div class="right">
-    <aside>
-      <h3><strong>Tags</strong> <span>(<%#= Tag.count %>)</span></h3>
-      <ul>
-        <li><%#= raw Tag.all.map { |t| link_to(t.name, tag_path(t)) }.join(', ') %></li>
-      </ul>
-    </aside>
-<!--     <aside>
-      <h3><strong>Projects</strong> <span>(5)</span></h3>
-    </aside>
-    <aside>
-      <h3><strong>Devices</strong> <span>(1)</span></h3>
-    </aside> -->
-    <%= yield(:sidebar) %>
-  </div>
-</div>
-
-<div class="left">
+<div id="content">
   <% flash.each do |key, msg| %>
     <div class="alert alert-<%= key %>">
       <p><%= msg.html_safe %></p>

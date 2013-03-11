@@ -1,15 +1,11 @@
 <div id="photo_grid_wrapper">
-  <% photos.each do |photo| %>
-    <% if photo.photo.thumb.present? %>
-      <div class="photo">
-        <% image_tag = image_tag photo.photo.thumb.url %>
-        <%= link_to image_tag, photo_path(photo) %>          
-        <div class="details">
-          <p><%= photo.caption.present? ? photo.caption : "No caption" %></p> 
-          <p class="tags"><%= photo.tag_list %></p>     
-        </div>
-      </div>
-    <% end %>
+  <% assignments.each do |assignment| %>
+    <div class="assignment_row">
+      <h2><%= assignment.title %> <span class="small"><%= link_to "View details", assignment %></span></h2>
+      <p><%= assignment.description %></p>
+      <%= render partial: "photo_row", locals: { photos: assignment.photos } %>
+      <div class="clearfix"></div>
+    </div>
   <% end %>
   <div class="clearfix"></div>
 </div>

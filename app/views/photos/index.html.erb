@@ -7,6 +7,6 @@
   <% title "Viewing All Photos" %>
 <% end %>
 
-<%= render partial: "photo_grid", locals: { photos: @photos } %>
+<%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
 
 <%= link_to 'Upload Photo', new_photo_path, class: "btn" %>

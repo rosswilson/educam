@@ -4,8 +4,6 @@
 
 #photo_grid_wrapper {
 	margin-top: 15px;
-	margin-right: -10px;
-	margin-bottom: 10px;
 	overflow: hidden;
 }
 
@@ -75,6 +73,21 @@
 	position: absolute;
 	top: 10px;
 	right: 21px;
+}
+
+span.small a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+span.small, span.small a {
+	color: #666;
+	font-size: 0.8em;
+	text-decoration: none;
+}
+
+.assignment_row span.small {
+	margin-left: 8px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 400px) {
