@@ -1,11 +1,14 @@
 class PhotosController < ApplicationController
-  authorize_resource
+    before_filter :authenticate_user!, :except => [ :index ]
 
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
-    @assignments = Assignment.all
+    if(current_user)
+      @assignments = Assignment.where(user_id: current_user.id)      
+    else
+      @assignments = nil
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +31,7 @@ class PhotosController < ApplicationController
   # GET /photos/new.json
   def new
     @photo = Photo.new
+    @assignments = Assignment.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +42,7 @@ class PhotosController < ApplicationController
   # GET /photos/1/edit
   def edit
     @photo = Photo.find(params[:id])
+    @assignments = Assignment.where(user_id: current_user.id)
   end
 
   # POST /photos

@@ -2,7 +2,6 @@ class Photo < ActiveRecord::Base
   attr_accessible :assignment_id, :caption, :device_id, :lat, :lon, :photo, :photo_cache, :tag_list
   
   belongs_to :assignment
-  belongs_to :device
   has_many :taggings
   has_many :tags, through: :taggings
 

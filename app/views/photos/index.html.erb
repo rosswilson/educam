@@ -1,12 +1,16 @@
-<% if @search_term.present? %>
-  <% searching_title = "Searching For Photos Related To " + @search_term.titlecase %>
-  <% title searching_title %>
-  <h3><%= searching_title %></h3>
+<% if current_user == nil %>
+  <% title "Please Login" %>
+  <h3><%= "Please login to manage your assignments and submitted photos" %></h3>
+  <p>EduCam is a mobile learning tool for teachers and students that provides a solution to using mobile phone cameras as part of a structured lesson securly and safely.</p>
 <% else %>
-  <h3>You're viewing all Photos that have been uploaded.</h3>
-  <% title "Viewing All Photos" %>
+  <% if @assignments.count == 0 %> 
+    <% title "You Have No Assignments" %>
+    <h3>You haven't got any Assignments. Why not create one?</h3>
+    <%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
+  <% else %>
+    <% title "Viewing Your Assignments" %>
+    <h3>You're viewing all your Assignments.</h3>
+    <%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
+    <%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
+  <% end %>
 <% end %>
-
-<%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
-
-<%= link_to 'Upload Photo', new_photo_path, class: "btn" %>

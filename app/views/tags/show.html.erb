@@ -1,0 +1,19 @@
+<% title "Viewing All Photos Tagged " + @tag.name %>
+
+<div id="photo_grid_wrapper">
+  <% @photos.each do |photo| %>
+    <% if photo.photo.thumb.present? %>
+      <div class="photo">
+        <% image_tag = image_tag photo.photo.thumb.url %>
+        <%= link_to image_tag, photo_path(photo) %>          
+        <div class="details">
+          <p><%= photo.caption.present? ? photo.caption : "No caption" %></p> 
+          <p class="tags"><%= photo.tag_list %></p>     
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
+
+<%= link_to 'Back to Assignments', photos_path, :class => "btn" %>

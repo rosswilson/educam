@@ -28,7 +28,8 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-
-    can :read, Photo
+    if user
+      can :manage, Photo
+    end
   end
 end

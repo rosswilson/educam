@@ -1,27 +1,17 @@
 <% title "Viewing Single Photo" %>
 
-<p id="notice"><%= notice %></p>
-
 <h3>You're viewing a single photo</h3>
 
 <div id="single_photo_wrapper">
   <div id="photo">
-    <a class="fancybox" rel="group" href="<%= @photo.photo.url %>">	
-      <%= image_tag @photo.photo.url %>
-    </a>
+    <%= image_tag @photo.photo %>
   </div>
   <div id="info">
-    <p><%= @photo.caption.present? ? @photo.caption : "No caption set" %></p>
+    <p>Caption: <%= @photo.caption.present? ? @photo.caption : "No caption set" %></p>
+    <p>Latitude: <%= @photo.lat.present? ? @photo.lat : "Not Recorded" %></p>
+    <p>Longitude: <%= @photo.lon.present? ? @photo.lon : "Not Recorded" %></p>
+    <p>Tags: <%= raw @photo.tags.map { |t| link_to(t.name, t) }.join(', ') %></p>
   </div>
 </div>
 
-<div>
-  <h2>Photo Information</h2>
-  <p>Latitude: <%= @photo.lat.present? ? @photo.lat : "Not Recorded" %></p>
-  <p>Longitude: <%= @photo.lon.present? ? @photo.lon : "Not Recorded" %></p>
-  <!--<p>City: <%#= @photo.city.present? ? @photo.city : "Not Recorded" %></p>
-  <p>Tags: <%#= raw @photo.tags.map { |t| link_to(t.name, tag_path(t)) }.join(', ') %></p>-->
-</div>
-
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+<%= link_to 'Edit', edit_photo_path(@photo), :class => "btn" %> <%= link_to 'Back', photos_path, :class => "btn" %>

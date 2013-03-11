@@ -8,8 +8,6 @@
 }
 
 #photo_grid_wrapper .photo img {
-	/*margin-bottom: 20px;*/
-	/*margin-right: 20px;*/
 	width: 100%;
 	display: block;
 	margin: 0;
@@ -23,8 +21,8 @@
 #photo_grid_wrapper .photo {
 	width: 200px;
 	float: left;
-	margin-bottom: 10px;
-	margin-right: 10px;
+	margin-bottom: 15px;
+	margin-right: 15px;
 	position: relative;
 }
 
@@ -60,12 +58,8 @@
 	width: 100%;
 }
 
-#single_photo_wrapper #photo {
-	width: 100%;
-}
-
 #single_photo_wrapper img {
-	width: 100%;
+	height: 500px;
 }
 
 #photo_search {
@@ -75,6 +69,18 @@
 	right: 21px;
 }
 
+.assignment_row {
+	background-color: #f4f4f4;
+	border: 1px solid #ddd;
+	padding: 15px 20px 5px 20px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.assignment_row h2 {
+	display: inline;
+}
+
 span.small a:hover {
 	color: #000;
 	text-decoration: underline;
@@ -82,7 +88,6 @@ span.small a:hover {
 
 span.small, span.small a {
 	color: #666;
-	font-size: 0.8em;
 	text-decoration: none;
 }
 
@@ -90,7 +95,11 @@ span.small, span.small a {
 	margin-left: 8px;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 400px) {
+.assignment_row p {
+	margin-bottom: 15px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 500px) {
 
 	#photo_grid_wrapper .photo {
 		width: 100%;
@@ -99,6 +108,15 @@ span.small, span.small a {
 
 	#photo_grid_wrapper {
 		margin-right: 0px;
+	}
+
+	.assignment_row h2 {
+		display: block;
+	}
+
+	.assignment_row span.small {
+		display: block;
+		margin-left: 0px;
 	}
 
 }

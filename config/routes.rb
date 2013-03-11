@@ -1,6 +1,7 @@
 EduCam::Application.routes.draw do
   devise_for :users
 
+  resources :tags
   resources :assignments
   resources :devices
   resources :photos

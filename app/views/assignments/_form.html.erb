@@ -12,18 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :size => "60x10" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", :class => "btn" %>
+    <%= link_to 'Delete Assignment', @assignment, method: :delete, class: "btn", data: { confirm: 'This will delete all photos in this assignment, continue?' } %>
+    <%= link_to 'Back', photos_path, class: "btn" %>
   </div>
 <% end %>
+

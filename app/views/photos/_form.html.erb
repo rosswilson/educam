@@ -16,32 +16,38 @@
   </div>
 
   <div class="field">
-    <%= f.label :photo %><br />
+    <%= f.label :photo %>
     <%= f.file_field :photo %>
     <%= f.hidden_field :photo_cache %>
   </div>
 
   <div class="field">
-    <%= f.label :caption %><br />
+    <%= f.label :caption %>
     <%= f.text_field :caption %>
   </div>
 
   <div class="field">
-    <%= f.label :lat %><br />
+    <%= f.label :lat, "Latitude" %>
     <%= f.text_field :lat %>
   </div>
 
   <div class="field">
-    <%= f.label :lon %><br />
+    <%= f.label :lon, "Longitude" %>
     <%= f.text_field :lon %>
   </div>
 
   <div class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.label :tag_list, "Tags (separated by commas)" %>
     <%= f.text_field :tag_list %>
   </div>
 
+  <div class="field">
+    <%= f.label :assignment_id, "Assignment" %>
+    <%= f.collection_select :assignment_id, @assignments, :id, :title %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", :class => "btn" %>
+    <%= link_to 'Back', photos_path, :class => "btn" %>
   </div>
 <% end %>
