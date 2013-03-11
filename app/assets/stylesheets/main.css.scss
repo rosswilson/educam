@@ -168,6 +168,18 @@ aside ul li a:hover {
 	clear: both;
 }
 
+.alert.alert-error {
+	background-color: #f2dede;
+	border: 1px solid #eed3d7;
+	color: #b94a48;
+	border-radius: 5px;
+	margin: 15px 0px;
+	p {
+		margin: 0px;
+		padding: 10px 12px;
+	}
+}
+
 @media only screen and (min-width: 0px) and (max-width: 600px) {
 
 	header {
