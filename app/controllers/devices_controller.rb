@@ -1,4 +1,6 @@
 class DevicesController < ApplicationController
+  authorize_resource
+
   # GET /devices
   # GET /devices.json
   def index
