@@ -1,6 +1,11 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @assignments = Assignment.all
+    render json: @assignments
+  end
+
   # GET /assignments/new
   def new
     @assignment = Assignment.new

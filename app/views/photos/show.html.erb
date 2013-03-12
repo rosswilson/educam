@@ -6,6 +6,10 @@
   <div id="photo">
     <%= image_tag @photo.photo %>
   </div>
+  <div id="map" data-lat="<%= @photo.lat.present? ? @photo.lat : "Not Recorded" %>" data-lon="<%= @photo.lon.present? ? @photo.lon : "Not Recorded" %>" data-caption="<%= @photo.caption.present? ? @photo.caption : "No caption set" %>">
+  	<!-- Map goes here -->
+  </div>
+  <div class="clearfix"></div>
   <div id="info">
     <p>Caption: <%= @photo.caption.present? ? @photo.caption : "No caption set" %></p>
     <p>Latitude: <%= @photo.lat.present? ? @photo.lat : "Not Recorded" %></p>

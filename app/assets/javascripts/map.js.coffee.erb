@@ -1,0 +1,87 @@
+map = null
+infowindow = new google.maps.InfoWindow()
+current_location_marker = null
+
+$(document).ready ->
+  if $("#map").length > 0
+    mapOptions =
+      zoom: 7
+      center: new google.maps.LatLng(54.2, -4.0)
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    map = new google.maps.Map(document.getElementById("map"), mapOptions)
+    start_location_watch()
+    addPhotoMarker()
+
+start_location_watch = ->
+  unless watchProcess?
+    watchProcess = navigator.geolocation.watchPosition(receive_location_update, handle_errors,
+      enableHighAccuracy: true
+      maximumAge: 120000
+      timeout: 30000
+    )
+
+stop_location_watch = ->
+  if watchProcess?
+    navigator.geolocation.clearWatch watchProcess
+    watchProcess = null
+
+handle_errors = (error) ->
+  switch error.code
+    when error.PERMISSION_DENIED
+      alert "Sorry, you chose to deny us access to your current location"
+      console.log "Map geocoding info: Permission Denied"
+      stop_location_watch()
+    when error.POSITION_UNAVAILABLE
+      alert "Sorry, we could not detect your current position"
+      console.log "Map geocoding error: Position Unavailable"
+      stop_location_watch()
+    when error.TIMEOUT
+      alert "Sorry, we could not determine your location, please try again"
+      console.log "Map geocoding error: Timeout"
+      stop_location_watch()
+    else
+      alert "An unknown error occurred, please try again"
+      console.log "Map geocoding error: Unknown error"
+      stop_location_watch()
+
+receive_location_update = (position) ->
+  plot_current_location position.coords.latitude, position.coords.longitude
+
+plot_current_location = (latitude, longitude) ->
+  addCurrentLocationMarker latitude, longitude
+  map.setCenter(new google.maps.LatLng(latitude, longitude))
+  map.setZoom 7
+         
+addCurrentLocationMarker = (latitude, longitude) ->
+  if current_location_marker
+    current_location_marker.setMap null
+
+  myLatlng = new google.maps.LatLng(latitude, longitude)
+  
+  newMarker = new google.maps.Marker(
+    position: myLatlng
+    map: map
+    icon: "<%= asset_path('map_icons/current_position.png') %>"
+    zIndex: 100
+  )
+    
+  google.maps.event.addListener newMarker, "click", ->
+    infowindow.setContent "<p><strong>Your current location</strong></p><p>We've calculated your location to be here</p>"
+    infowindow.open map, newMarker
+    
+  current_location_marker = newMarker
+
+addPhotoMarker = ->
+  div = document.getElementById("map")
+  photoLatLng = new google.maps.LatLng(div.getAttribute("data-lat"), div.getAttribute("data-lon"))
+
+  marker = new google.maps.Marker(
+    position: photoLatLng
+    map: map
+    title: div.getAttribute("data-caption")
+  )
+
+  google.maps.event.addListener marker, "click", ->
+    infowindow.close()
+    infowindow.setContent "<p><strong>Photo location</strong></p><p>This photo was taken here</p>"
+    infowindow.open map, marker
