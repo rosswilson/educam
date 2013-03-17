@@ -4,19 +4,32 @@ current_location_marker = null
 
 $(document).ready ->
   if $("#map").length > 0
-    mapOptions =
-      zoom: 7
-      center: new google.maps.LatLng(54.2, -4.0)
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    map = new google.maps.Map(document.getElementById("map"), mapOptions)
-    start_location_watch()
-    addPhotoMarker()
+    $("#single_photo_wrapper #photo img").load ->
+      setMapSize()
+      mapOptions =
+        zoom: 10
+        center: new google.maps.LatLng(54.2, -4.0)
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      map = new google.maps.Map(document.getElementById("map"), mapOptions)
+      start_location_watch()
+      addPhotoMarker()
+    $(window).resize ->
+      setMapSize()
+
+setMapSize = ->
+  image_height = $("#single_photo_wrapper #photo img").height()
+  image_width = $("#single_photo_wrapper #photo img").width()
+  $("#map").height(image_height) 
+  if ($(window).width() <= 700)
+    $("#map").width(image_width - 2)
+  else
+    $("#map").width(image_width - 20 - 2)  
 
 start_location_watch = ->
   unless watchProcess?
     watchProcess = navigator.geolocation.watchPosition(receive_location_update, handle_errors,
       enableHighAccuracy: true
-      maximumAge: 120000
+      maximumAge: 15000
       timeout: 30000
     )
 
@@ -28,7 +41,7 @@ stop_location_watch = ->
 handle_errors = (error) ->
   switch error.code
     when error.PERMISSION_DENIED
-      alert "Sorry, you chose to deny us access to your current location"
+      alert "Sorry, we need your permission to plot your current location"
       console.log "Map geocoding info: Permission Denied"
       stop_location_watch()
     when error.POSITION_UNAVAILABLE
@@ -36,7 +49,7 @@ handle_errors = (error) ->
       console.log "Map geocoding error: Position Unavailable"
       stop_location_watch()
     when error.TIMEOUT
-      alert "Sorry, we could not determine your location, please try again"
+      alert "Sorry, we could not determine your location before timeing out"
       console.log "Map geocoding error: Timeout"
       stop_location_watch()
     else
@@ -49,8 +62,6 @@ receive_location_update = (position) ->
 
 plot_current_location = (latitude, longitude) ->
   addCurrentLocationMarker latitude, longitude
-  map.setCenter(new google.maps.LatLng(latitude, longitude))
-  map.setZoom 7
          
 addCurrentLocationMarker = (latitude, longitude) ->
   if current_location_marker
@@ -72,16 +83,18 @@ addCurrentLocationMarker = (latitude, longitude) ->
   current_location_marker = newMarker
 
 addPhotoMarker = ->
-  div = document.getElementById("map")
-  photoLatLng = new google.maps.LatLng(div.getAttribute("data-lat"), div.getAttribute("data-lon"))
+  div = $("#map")
+  photoLatLng = new google.maps.LatLng(div.data("lat"), div.data("lon"))
+  map.setCenter(new google.maps.LatLng(div.data("lat"), div.data("lon")))
 
   marker = new google.maps.Marker(
     position: photoLatLng
     map: map
-    title: div.getAttribute("data-caption")
+    title: div.data("caption")
   )
 
   google.maps.event.addListener marker, "click", ->
     infowindow.close()
-    infowindow.setContent "<p><strong>Photo location</strong></p><p>This photo was taken here</p>"
+    caption = div.data("caption")
+    infowindow.setContent "<p><strong>Photo</strong></p><p>Caption: " + caption + "</p>"
     infowindow.open map, marker
