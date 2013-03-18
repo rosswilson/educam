@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306204305) do
+ActiveRecord::Schema.define(:version => 20130318011256) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130306204305) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

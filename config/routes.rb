@@ -6,6 +6,8 @@ EduCam::Application.routes.draw do
   resources :devices
   resources :photos
 
+  resources :tokens, :only => [:create, :destroy]
+
   root :to => 'photos#index'
 
   # The priority is based upon order of creation:
