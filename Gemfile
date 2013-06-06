@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'sqlite3'
-
 gem 'jquery-rails'
+
+# Use mysql as the database for Active Record
+gem 'mysql2'
 
 # Using carrierwave to handle file uploads
 gem 'carrierwave'
