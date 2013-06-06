@@ -11,5 +11,3 @@ ActionMailer::Base.smtp_settings = {
 }
 
 ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
-
-# hjruratjkxellzig

@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
+  # Disabled to allow easier Android HTTP POSTing
+  # protect_from_forgery
 end

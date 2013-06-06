@@ -1,10 +1,4 @@
-<% if @assignments.count == 0 %> 
-  <% title "No Assignments" %>
-  <h3>You haven't got any Assignments. Why not create one?</h3>
-  <%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
-<% else %>
-  <% title "Your Assignments" %>
-  <h3>You're viewing all your Assignments.</h3>
-  <%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
-  <%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
-<% end %>
+<% title "Your Assignments" %>
+<h3>You're viewing all your Assignments.</h3>
+<%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
+<%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
