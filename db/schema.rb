@@ -14,29 +14,21 @@
 ActiveRecord::Schema.define(:version => 20130318011256) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "title"
+    t.string   "title",       :limit => 50
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "devices", :force => true do |t|
-    t.string   "name"
-    t.text     "notes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "photos", :force => true do |t|
-    t.string   "photo"
+    t.string   "photo",         :limit => 250
     t.decimal  "lat"
     t.decimal  "lon"
-    t.string   "caption"
-    t.integer  "device_id"
+    t.string   "caption",       :limit => 250
     t.integer  "assignment_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -47,9 +39,9 @@ ActiveRecord::Schema.define(:version => 20130318011256) do
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       :limit => 50
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "users", :force => true do |t|
