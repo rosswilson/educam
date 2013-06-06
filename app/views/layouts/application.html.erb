@@ -17,12 +17,12 @@
 <body>
 
 <header>
-  <h2><a href="/photos" title="Read more about this project and see how it works">EduCam</a> by Ross Wilson</h2>
+  <h2><a href="/" title="Read more about this project and see how it works">EduCam</a> by Ross Wilson</h2>
   <h1 class="title"><%= title %></h1>
-  <!--<%= form_tag photos_path, method: :get, id: "photo_search" do %>
+  <%= form_tag photos_path, method: :get, id: "photo_search" do %>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
-  <% end %>-->
+  <% end %>
   <div id="login_register">
     <% if user_signed_in? %>
       <p>Logged in as <strong><%= current_user.email %></strong></p>
@@ -30,7 +30,7 @@
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn" %>
     <% else %>
       <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
-      <!--<%= link_to "Register", new_user_registration_path, class: "btn" %>-->
+      <%= link_to "Register", new_user_registration_path, class: "btn" %>-->
       <%= link_to "Login", new_user_session_path, class: "btn" %>
     <% end %>
   </div>
@@ -45,7 +45,7 @@
 <div id="content">
   <% flash.each do |key, msg| %>
     <div class="alert alert-<%= key %>">
-      <p><%= msg.html_safe %></p>
+      <p><%= msg %></p>
     </div>
   <% end %>
   <%= yield %>
