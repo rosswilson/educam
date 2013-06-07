@@ -68,16 +68,22 @@ setPhotoMarker = (latitude, longitude) ->
   )
   
   google.maps.event.addListener photo_marker, "dragend", ->
-    geocodePosition photo_marker.getPosition()
+    updateLatLonFields(photo_marker.getPosition().lat(), photo_marker.getPosition().lng())
+    #geocodePosition photo_marker.getPosition()
+
+updateLatLonFields = (lat, lon) ->
+  $("#photo_lat").val(lat)
+  $("#photo_lon").val(lon)
 
 geocodePosition = (pos) ->
   geocoder = new google.maps.Geocoder()
   geocoder.geocode
     latLng: pos
   , (results, status) ->
+    console.log status
     if status is google.maps.GeocoderStatus.OK
       $("#photo_lat").val results[0].geometry.location.lat()
       $("#photo_lon").val results[0].geometry.location.lng()
       #$("#mapErrorMsg").hide 100
     else
-      $("#mapErrorMsg").html("Cannot determine address at this location." + status).show 100
+      #console.log "Cannot determine address at this location." + status
