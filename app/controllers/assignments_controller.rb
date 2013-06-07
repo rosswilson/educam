@@ -8,6 +8,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
+    @existing_record = false
 
     respond_to do |format|
       format.html # new.html.erb
@@ -17,11 +18,13 @@ class AssignmentsController < ApplicationController
 
   def edit
     @assignment = Assignment.find(params[:id])
+    @existing_record = true
   end
 
   def create
     @assignment = Assignment.new(params[:assignment])
     @assignment.user = current_user
+    @existing_record = false
 
     respond_to do |format|
       if @assignment.save
@@ -36,6 +39,7 @@ class AssignmentsController < ApplicationController
 
   def update
     @assignment = Assignment.find(params[:id])
+    @existing_record = true
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])

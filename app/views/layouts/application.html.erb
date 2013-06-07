@@ -3,12 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <% title = yield(:title) || 'EduCam, by Ross Wilson' %>
   <title><%= title %></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-
+  <meta name="viewport" content="width=device-width,user-scalable=no" />
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "https://maps.google.com/maps/api/js?sensor=true", "application" %>
   <%= csrf_meta_tags %>
@@ -19,27 +17,17 @@
 <header>
   <h2><a href="/" title="Read more about this project and see how it works">EduCam</a> by Ross Wilson</h2>
   <h1 class="title"><%= title %></h1>
-  <%= form_tag photos_path, method: :get, id: "photo_search" do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  <% end %>
   <div id="login_register">
     <% if user_signed_in? %>
       <p>Logged in as <strong><%= current_user.email %></strong></p>
       <%= link_to 'My Account', edit_user_registration_path, class: "btn" %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn" %>
     <% else %>
-      <p><strong>Register</strong> or <strong>Login</strong> to the admin interface below</p>
-      <%= link_to "Register", new_user_registration_path, class: "btn" %>-->
+      <p><strong>Sign Up</strong> or <strong>Login</strong> to the admin interface below</p>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn" %>
       <%= link_to "Login", new_user_session_path, class: "btn" %>
     <% end %>
   </div>
-  <!--<nav>
-    <ul>
-	    <li><a class="btn" href="#">View Projects</a></li>
-      <li><a class="btn" href="#">Manage Devices</a></li>     
-    </ul>
-  </nav>-->
 </header>
 
 <div id="content">
