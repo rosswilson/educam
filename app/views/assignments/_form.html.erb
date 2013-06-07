@@ -21,6 +21,10 @@
   </div>
   <div class="actions">
     <%= f.submit "Submit", :class => "btn" %>
+    <%= link_to 'Cancel and return to homepage', root_path, class: "btn" %>
+    <% if @existing_record %>
+      <%= link_to 'Delete Assignment', @assignment, method: :delete, class: "btn", data: { confirm: 'This will also delete all photos in the Assignment, continue?' } %>
+    <% end %>
   </div>
 <% end %>
 
