@@ -10,7 +10,7 @@
 
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
-worker_processes 4
+worker_processes 8
 
 # Since Unicorn is never exposed to outside clients, it does not need to
 # run on the standard HTTP port (80), there is no reason to start Unicorn
@@ -27,8 +27,7 @@ working_directory APP_PATH # available in 0.94.0+
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen APP_PATH + "/tmp/.sock", :backlog => 64
-listen 8090, :tcp_nopush => true
+listen "127.0.0.1:8090"
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
@@ -39,8 +38,8 @@ pid APP_PATH + "/tmp/pids/unicorn.pid"
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
 # so prevent them from going to /dev/null when daemonized here:
-stderr_path APP_PATH + "/log/unicorn.stderr.log"
-stdout_path APP_PATH + "/log/unicorn.stderr.log"
+stderr_path APP_PATH + "/log/unicorn_error.log"
+stdout_path APP_PATH + "/log/unicorn.log"
 
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
