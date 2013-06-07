@@ -22,4 +22,4 @@
   <div class="clearfix"></div>
 </div>
 
-<%= link_to 'Edit', edit_photo_path(@photo), :class => "btn" %> <%= link_to 'Back to homepage', photos_path, :class => "btn" %>
+<%= link_to 'Edit', edit_photo_path(@photo), :class => "btn" %> <%= link_to 'Delete Photo', @photo, method: :delete, class: "btn", data: { confirm: 'This will permanently delete the photo, continue?' } %> <%= link_to 'Back to homepage', photos_path, :class => "btn" %>
