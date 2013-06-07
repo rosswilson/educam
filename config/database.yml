@@ -21,6 +21,6 @@ production:
   encoding: utf8
   database: educam_prod
   pool: 5
-  username: root
-  password:
+  username: educam
+  password: educamLancasterMySQL
   port: 3306
