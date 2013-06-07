@@ -1,4 +1,8 @@
-<% title "Register" %>
+<% title "Sign Up for a teacher account" %>
+
+<p>To gain access to EduCam and start using it in your lessons you'll need a user account.</p>
+
+<p>Simply enter your email address and choose a password below to get started.</p>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -19,8 +23,6 @@
   </div>
 
   <div class="field">
-    <%= f.submit "Sign up", :class => "btn" %>
+    <%= f.submit "Sign Up", :class => "btn" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
