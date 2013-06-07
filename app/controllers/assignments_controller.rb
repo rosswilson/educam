@@ -6,6 +6,11 @@ class AssignmentsController < ApplicationController
     render json: @assignments
   end
 
+  def show
+    @assignment = Assignment.find(params[:id])
+    @photos = @assignment.photos
+  end
+
   def new
     @assignment = Assignment.new
     @existing_record = false

@@ -1,13 +1,13 @@
-<% title "Viewing photos tagged with " + @tag.name %>
+<% title "Viewing all photos in " + @assignment.title %>
 
-<p>These are all the photos that have been tagged with <%= @tag.name %>.</p>
+<p>These are all the photos that have been uploaded to the <%= @assignment.title %> assignment.</p>
 
 <div id="photo_grid_wrapper">
   <%= render partial: "photos/photo_row", locals: { photos: @photos } %>
   <div class="clearfix"></div>
 </div>
 
-<p>View all of the tagged photos here on a large interactive map.</p>
+<p>View all of the uploaded photos here on a large interactive map.</p>
 
 <div id="multi_point_map">
   <!-- Map goes here -->

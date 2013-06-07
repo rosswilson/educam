@@ -2,7 +2,7 @@
   <% assignments.each do |assignment| %>
     <div class="assignment_row">
       <h2><%= assignment.title %></h2>
-      <span class="small"><%= link_to "Edit", edit_assignment_path(assignment) %></span>
+      <span class="small"><%= link_to "Edit Assignment", edit_assignment_path(assignment) %> | <%= link_to "View Large Map", assignment_path(assignment) %></span>
       <p><%= assignment.description %></p>
       <%= render partial: "photo_row", locals: { photos: assignment.photos } %>
       <div class="clearfix"></div>

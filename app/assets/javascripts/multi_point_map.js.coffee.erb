@@ -2,12 +2,12 @@ map = null
 is_first_marker = true
 
 $(document).ready ->
-  if $("#tag_map").length > 0
+  if $("#multi_point_map").length > 0
     mapOptions =
       zoom: 13
       center: new google.maps.LatLng(54.005524, -2.784783)
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    map = new google.maps.Map(document.getElementById("tag_map"), mapOptions)
+    map = new google.maps.Map(document.getElementById("multi_point_map"), mapOptions)
 
     $.each $(".photo"), ->
       lat = $(this).data("lat")
