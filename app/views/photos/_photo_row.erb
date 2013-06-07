@@ -1,6 +1,12 @@
 <% photos.each do |photo| %>
   <% if photo.photo.thumb.present? %>
-    <div class="photo">
+    <%
+      lat = photo.lat ? photo.lat : 0
+      lon = photo.lon ? photo.lon : 0
+      caption = photo.caption.present? ? photo.caption : "No caption set"
+      path = photo_path(photo)
+    %>
+    <div class="photo" data-lat="<%= lat %>" data-lon="<%= lon %>" data-path="<%= path %>" data-caption="<%= caption %>" data-thumb="<%= photo.photo.thumb.url %>">
       <% image_tag = image_tag photo.photo.thumb.url %>
       <%= link_to image_tag, photo_path(photo) %>          
       <div class="details">

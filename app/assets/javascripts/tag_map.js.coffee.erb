@@ -1,0 +1,39 @@
+map = null
+is_first_marker = true
+
+$(document).ready ->
+  if $("#tag_map").length > 0
+    mapOptions =
+      zoom: 13
+      center: new google.maps.LatLng(54.005524, -2.784783)
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    map = new google.maps.Map(document.getElementById("tag_map"), mapOptions)
+
+    $.each $(".photo"), ->
+      lat = $(this).data("lat")
+      lon = $(this).data("lon")
+      path = $(this).data("path")
+      caption = $(this).data("caption")
+      thumb = $(this).data("thumb")
+      plot_photo_marker(lat, lon, path, caption, thumb)
+      console.log lat + ", " + lon + ", " + path + ", " + caption + ", " + thumb
+         
+plot_photo_marker = (latitude, longitude, path, caption, thumb) ->
+  if(is_first_marker)
+    map.setCenter(new google.maps.LatLng(latitude, longitude))
+    is_first_marker = false
+
+  myLatlng = new google.maps.LatLng(latitude, longitude)
+  
+  photo_marker = new google.maps.Marker(
+    position: myLatlng
+    map: map
+    zIndex: 100
+  )
+  
+  infowindow = new google.maps.InfoWindow()
+  google.maps.event.addListener photo_marker, "click", ->
+    infowindow.close()
+    console.log path
+    infowindow.setContent "<p><strong>" + caption + "</strong></p>" + "<p>Click photo to view larger version</p>" + "<a href='" + path + "'><img src='" + thumb + "'></img></a></p>"
+    infowindow.open map, photo_marker

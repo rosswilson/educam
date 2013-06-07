@@ -7,8 +7,8 @@ $(document).ready ->
     $("#single_photo_wrapper #photo img").load ->
       setMapSize()
       mapOptions =
-        zoom: 10
-        center: new google.maps.LatLng(54.2, -4.0)
+        zoom: 13
+        center: new google.maps.LatLng(54.005524, -2.784783)
         mapTypeId: google.maps.MapTypeId.ROADMAP
       map = new google.maps.Map(document.getElementById("map"), mapOptions)
       start_location_watch()

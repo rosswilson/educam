@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  validates :photo, :presence => true
+  validates :photo, :assignment, :presence => true
 
   reverse_geocoded_by :lat, :lon do |obj, results|
     if results.first
@@ -30,7 +30,7 @@ class Photo < ActiveRecord::Base
   end
   
   def tag_list=(names)
-    self.tags = names.split(",").map do |n|
+    self.tags = names.split(",").uniq.map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
   end

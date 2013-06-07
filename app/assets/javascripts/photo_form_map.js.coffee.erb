@@ -1,0 +1,83 @@
+map = null
+photo_marker = null
+
+$(document).ready ->
+  if $("#photo_form_map").length > 0
+    mapOptions =
+      zoom: 13
+      center: new google.maps.LatLng(54.005524, -2.784783)
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    map = new google.maps.Map(document.getElementById("photo_form_map"), mapOptions)
+    
+    lat = $("#photo_form_map").data("lat")
+    lon = $("#photo_form_map").data("lon")
+
+    if(lat != 0 && lon != 0)
+      setPhotoMarker(lat, lon)
+    else
+      start_location_watch()
+
+start_location_watch = ->
+  unless watchProcess?
+    watchProcess = navigator.geolocation.watchPosition(receive_location_update, handle_errors,
+      enableHighAccuracy: true
+      maximumAge: 15000
+      timeout: 30000
+    )
+
+stop_location_watch = ->
+  if watchProcess?
+    navigator.geolocation.clearWatch watchProcess
+    watchProcess = null
+
+handle_errors = (error) ->
+  switch error.code
+    when error.PERMISSION_DENIED
+      alert "Sorry, we need your permission to plot your current location"
+      console.log "Map geocoding info: Permission Denied"
+      stop_location_watch()
+    when error.POSITION_UNAVAILABLE
+      alert "Sorry, we could not detect your current position"
+      console.log "Map geocoding error: Position Unavailable"
+      stop_location_watch()
+    when error.TIMEOUT
+      alert "Sorry, we could not determine your location before timeing out"
+      console.log "Map geocoding error: Timeout"
+      stop_location_watch()
+    else
+      alert "An unknown error occurred, please try again"
+      console.log "Map geocoding error: Unknown error"
+      stop_location_watch()
+
+receive_location_update = (position) ->
+  setPhotoMarker position.coords.latitude, position.coords.longitude
+  stop_location_watch()
+         
+setPhotoMarker = (latitude, longitude) ->
+  map.setCenter(new google.maps.LatLng(latitude, longitude))
+
+  myLatlng = new google.maps.LatLng(latitude, longitude)
+  
+  photo_marker = new google.maps.Marker(
+    position: myLatlng
+    map: map
+    draggable: true
+    animation: google.maps.Animation.DROP
+    icon: "<%= asset_path('map_icons/current_position.png') %>"
+    zIndex: 100
+  )
+  
+  google.maps.event.addListener photo_marker, "dragend", ->
+    geocodePosition photo_marker.getPosition()
+
+geocodePosition = (pos) ->
+  geocoder = new google.maps.Geocoder()
+  geocoder.geocode
+    latLng: pos
+  , (results, status) ->
+    if status is google.maps.GeocoderStatus.OK
+      $("#photo_lat").val results[0].geometry.location.lat()
+      $("#photo_lon").val results[0].geometry.location.lng()
+      #$("#mapErrorMsg").hide 100
+    else
+      $("#mapErrorMsg").html("Cannot determine address at this location." + status).show 100

@@ -1,4 +1,5 @@
 <% title "Your Assignments" %>
-<h3>You're viewing all your Assignments.</h3>
+<h3>Showing all your Assignments and uploaded Photos.</h3>
 <%= render partial: "photo_grid", locals: { photos: @photos, assignments: @assignments } %>
-<%= link_to 'New Assignment', new_assignment_path, class: "btn" %>
+<%= link_to 'Create a new Assignment', new_assignment_path, class: "btn" %>
+<%= link_to 'Manually upload a Photo', new_photo_path, class: "btn" %>

@@ -1,6 +1,16 @@
-<% title "Viewing Single Photo" %>
+<% if @photo.caption.present? %>
+  <% title @photo.caption %>
+<% else %>
+  <% title "Viewing Single Photo" %>
+  <h3>No caption set for this photo</h3>
+<% end %>
 
-<h3>You're viewing a single photo</h3>
+<% if @photo.tags.count > 0 %>
+  <p>Tags: <%= raw @photo.tags.map { |t| 
+    link = "<span class='tags'>" + link_to(t.name, t) + "</span>" }.join %></p>
+<% else %>
+  <p>No tags have been set for this photo.</p>
+<% end %>
 
 <div id="single_photo_wrapper">
   <div id="photo">
@@ -10,12 +20,6 @@
   	<!-- Map goes here -->
   </div>
   <div class="clearfix"></div>
-  <div id="info">
-    <p>Caption: <%= @photo.caption.present? ? @photo.caption : "No caption set" %></p>
-    <p>Latitude: <%= @photo.lat.present? ? @photo.lat : "Not Recorded" %></p>
-    <p>Longitude: <%= @photo.lon.present? ? @photo.lon : "Not Recorded" %></p>
-    <p>Tags: <%= raw @photo.tags.map { |t| link_to(t.name, t) }.join(', ') %></p>
-  </div>
 </div>
 
-<%= link_to 'Edit', edit_photo_path(@photo), :class => "btn" %> <%= link_to 'Back', photos_path, :class => "btn" %>
+<%= link_to 'Edit', edit_photo_path(@photo), :class => "btn" %> <%= link_to 'Back to homepage', photos_path, :class => "btn" %>

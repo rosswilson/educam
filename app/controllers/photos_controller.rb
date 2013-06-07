@@ -43,6 +43,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(params[:photo])
+    @assignments = current_user.assignments
 
     respond_to do |format|
       if @photo.save
@@ -57,6 +58,7 @@ class PhotosController < ApplicationController
 
   def update
     @photo = Photo.find(params[:id])
+    @assignments = current_user.assignments
 
     respond_to do |format|
       if @photo.update_attributes(params[:photo])

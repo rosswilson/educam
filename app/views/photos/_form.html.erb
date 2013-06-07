@@ -11,12 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= image_tag(@photo.photo.thumb.url) if @photo.photo.present? %>
-  </div>
+  <% if @photo.photo.present? %>
+    <div class="field">
+      <%= f.label "Photo preview" %>
+      <%= image_tag(@photo.photo.thumb.url) %>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label :photo %>
+    <%= f.label :photo, "Upload your photo" %>
     <%= f.file_field :photo %>
     <%= f.hidden_field :photo_cache %>
   </div>
@@ -24,16 +27,6 @@
   <div class="field">
     <%= f.label :caption %>
     <%= f.text_field :caption %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lat, "Latitude" %>
-    <%= f.text_field :lat %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lon, "Longitude" %>
-    <%= f.text_field :lon %>
   </div>
 
   <div class="field">
@@ -46,8 +39,25 @@
     <%= f.collection_select :assignment_id, @assignments, :id, :title %>
   </div>
 
+  <div class="field">
+    <%= f.label "Drag the map to set the Latitude and Longitude" %>
+    <div id="photo_form_map" data-lat="<%= @photo.lat ? @photo.lat : 0 %>" data-lon="<%= @photo.lon ? @photo.lon : 0 %>">
+      <!-- Map goes here -->
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :lat, "Latitude" %>
+    <%= f.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lon, "Longitude" %>
+    <%= f.text_field :lon %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Submit", :class => "btn" %>
-    <%= link_to 'Back', photos_path, :class => "btn" %>
+    <%= link_to 'Back to homepage', root_path, :class => "btn" %>
   </div>
 <% end %>

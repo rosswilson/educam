@@ -1,19 +1,18 @@
-<% title "Viewing All Photos Tagged " + @tag.name %>
+<% title "Viewing photos tagged with " + @tag.name %>
+
+<p>These are all the photos that have been tagged with <%= @tag.name %>.</p>
 
 <div id="photo_grid_wrapper">
-  <% @photos.each do |photo| %>
-    <% if photo.photo.thumb.present? %>
-      <div class="photo">
-        <% image_tag = image_tag photo.photo.thumb.url %>
-        <%= link_to image_tag, photo_path(photo) %>          
-        <div class="details">
-          <p><%= photo.caption.present? ? photo.caption : "No caption" %></p> 
-          <p class="tags"><%= photo.tag_list %></p>     
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render partial: "photos/photo_row", locals: { photos: @photos } %>
   <div class="clearfix"></div>
 </div>
 
-<%= link_to 'Back to Assignments', photos_path, :class => "btn" %>
+<p>View all of the tagged photos here on a large interactive map.</p>
+
+<div id="tag_map">
+  <!-- Map goes here -->
+</div>
+
+<p> </p>
+
+<%= link_to 'Back to homepage', root_path, :class => "btn" %>

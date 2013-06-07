@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20130318011256) do
 
   create_table "photos", :force => true do |t|
     t.string   "photo",         :limit => 250
-    t.decimal  "lat"
-    t.decimal  "lon"
+    t.float  "lat"
+    t.float  "lon"
     t.string   "caption",       :limit => 250
     t.integer  "assignment_id"
     t.datetime "created_at",                   :null => false

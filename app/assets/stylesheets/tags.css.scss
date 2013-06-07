@@ -1,0 +1,25 @@
+.tags{
+  margin:0;
+  padding:0;
+  list-style:none;
+  } 
+.tags li, .tags a{
+  height:24px;
+  line-height:24px;
+  position:relative;
+  font-size:11px;
+  display: inline-block;
+  } 
+.tags a{
+  margin-left: 10px;
+  padding: 0 10px 0 12px;
+  background:#0089e0;
+  color:#fff;
+  text-decoration:none;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px; 
+  border-radius:4px;
+  } 
+
+.tags a:hover{background:#555;} 
+.tags a:hover:before{border-color:transparent #555 transparent transparent;}  
